@@ -32,18 +32,25 @@ public class ClienteDAOTest {
 	@Test
 	public void pesquisarCliente() {
 
-		Cliente clienteConsultado = clienteDAO.buscarPorCpf(cliente.getCpf());
+		Cliente clienteConsultado = clienteDAO.consultar(cliente.getCpf());
 		Assert.assertNotNull(clienteConsultado);
 
 	}
 	@Test
 	public void salvarCliente() {
-		Boolean retorno = clienteDAO.salvar(cliente);
+		Boolean retorno = clienteDAO.cadastrar(cliente);
 		Assert.assertTrue(retorno);
 	}
 	@Test
 	public void excluirCliente() {
 		clienteDAO.excluir(cliente.getCpf());
+	}
+	@Test
+	public void alterarrCliente() {
+		cliente.setNome("Drack");
+		clienteDAO.alterar(cliente);
+		
+		Assert.assertEquals("Drack", cliente.getNome());
 	}
 
 }

@@ -10,4 +10,6 @@ public interface IClienteService {
 
 	void excluir(Long cpf);
 
+	void alterar(Cliente cliente);
+
 }

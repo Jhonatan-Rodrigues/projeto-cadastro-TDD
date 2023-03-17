@@ -7,7 +7,7 @@ package br.com.jhonatan.domain;
  * @author Jhonatan
  *
  */
-public class Cliente {
+public class Cliente implements Persistente {
 	
 	private String nome;
     private Long cpf;
