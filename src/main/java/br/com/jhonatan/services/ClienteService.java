@@ -3,42 +3,34 @@
  */
 package br.com.jhonatan.services;
 
-import br.com.jhonatan.dao.ClienteDAO;
 import br.com.jhonatan.dao.IClienteDAO;
+import br.com.jhonatan.dao.generics.GenericService;
 import br.com.jhonatan.domain.Cliente;
 
 /**
  * @author Jhonatan
  *
  */
-public class ClienteService implements IClienteService {
+public class ClienteService extends GenericService<Cliente> implements IClienteService {
 	
-	private IClienteDAO clienteDAO;
 	
 	public ClienteService(IClienteDAO clienteDAO) {
-		this.clienteDAO = clienteDAO ;
+		super();
 	}
 
 	@Override
-	public Boolean salvar(Cliente cliente) {
-		return clienteDAO.cadastrar(cliente);
+	public void atualizarDados(Cliente entity, Cliente entityCadastrado) {
+		
 	}
 
 	@Override
-	public Cliente buscarPorCpf(Long cpf) {
+	public Class<Cliente> getTipoClasse() {
 		// TODO Auto-generated method stub
-		return clienteDAO.consultar(cpf);
+		return Cliente.class;
 	}
 
-	@Override
-	public void excluir(Long cpf) {
-		clienteDAO.excluir(cpf);
-	}
+	
 
-	@Override
-	public void alterar(Cliente cliente) {
-		clienteDAO.alterar(cliente);
-	}
 	
 
 }

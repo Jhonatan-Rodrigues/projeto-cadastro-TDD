@@ -7,10 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.jhonatan.dao.ClienteDAOMock;
-import br.com.jhonatan.dao.IClienteDAO;
+import br.com.jhonatan.dao.ClienteServiceMock;
 import br.com.jhonatan.domain.Cliente;
-import br.com.jhonatan.services.ClienteService;
 import br.com.jhonatan.services.IClienteService;
 
 /**
@@ -23,8 +21,7 @@ public class ClienteServiceTest {
 	Cliente cliente;
 	
 	public ClienteServiceTest() {
-		IClienteDAO dao = new ClienteDAOMock();
-		clienteService = new ClienteService(dao);
+		clienteService = new ClienteServiceMock();
 	}
 	@Before
 	public void init() {
@@ -37,20 +34,19 @@ public class ClienteServiceTest {
 		cliente.setNumero(10);
 		cliente.setTel(13996988282L);
 		
-		clienteService.salvar(cliente);
+		clienteService.cadastrar(cliente);
 		
 	}
 	@Test
 	public void pesquisarCliente() {
-		
-		
-		Cliente clienteConsultado = clienteService.buscarPorCpf(cliente.getCpf());
+
+		Cliente clienteConsultado = clienteService.consultar(cliente.getCpf());
 		Assert.assertNotNull(clienteConsultado);
-		
+
 	}
 	@Test
 	public void salvarCliente() {
-		Boolean retorno = clienteService.salvar(cliente);
+		Boolean retorno = clienteService.cadastrar(cliente);
 		Assert.assertTrue(retorno);
 	}
 	@Test
@@ -58,11 +54,11 @@ public class ClienteServiceTest {
 		clienteService.excluir(cliente.getCpf());
 	}
 	@Test
-	public void alterarCliente() {
+	public void alterarrCliente() {
 		cliente.setNome("Drack");
 		clienteService.alterar(cliente);
+		
 		Assert.assertEquals("Drack", cliente.getNome());
 	}
-	
 
 }
